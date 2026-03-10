@@ -1,0 +1,93 @@
+{
+  "id": "rpg",
+  "name": "RPG",
+  "description": "Top-down RPG with quest system, inventory, and NPC interactions",
+  "baseConfig": {
+    "meta": {
+      "title": "My RPG",
+      "author": "Anonymous",
+      "engine": "galacean"
+    },
+    "scene": {
+      "entities": [
+        {
+          "id": "hero",
+          "name": "Hero",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            { "type": "visual", "mesh": "character", "material": "hero_mat" },
+            {
+              "type": "script",
+              "script": "HeroController",
+              "props": { "speed": 3, "hp": 100, "level": 1 }
+            }
+          ]
+        },
+        {
+          "id": "npc_merchant",
+          "name": "Merchant",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 5, "y": 0, "z": 3 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            { "type": "visual", "mesh": "character", "material": "npc_mat" },
+            {
+              "type": "script",
+              "script": "NPCDialogue",
+              "props": { "dialogueId": "merchant_intro" }
+            }
+          ]
+        },
+        {
+          "id": "camera",
+          "name": "Camera",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 10, "z": 8 },
+              "rotation": { "x": -45, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "CameraFollow",
+              "props": { "target": "hero", "smoothing": 0.05 }
+            }
+          ]
+        }
+      ],
+      "environment": {
+        "skybox": "sky_sunset",
+        "ambientColor": "#ff9966"
+      }
+    },
+    "ui": {
+      "elements": [
+        {
+          "id": "hp_bar",
+          "kind": "progress",
+          "props": { "value": 100, "max": 100, "anchor": "bottom-left", "label": "HP" }
+        },
+        {
+          "id": "mp_bar",
+          "kind": "progress",
+          "props": { "value": 50, "max": 50, "anchor": "bottom-left", "label": "MP" }
+        },
+        {
+          "id": "quest_log",
+          "kind": "panel",
+          "props": { "anchor": "top-right", "title": "Quests" }
+        }
+      ]
+    }
+  },
+  "webTemplate": "./src/web-scaffold"
+}

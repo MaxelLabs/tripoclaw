@@ -1,0 +1,14 @@
+{
+  "name": "@openclaw/skills-market",
+  "version": "2026.3.9",
+  "description": "Skill template registry for Lobster Game Studio",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

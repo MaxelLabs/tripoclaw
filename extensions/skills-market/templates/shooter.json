@@ -1,0 +1,79 @@
+{
+  "id": "shooter",
+  "name": "Shooter",
+  "description": "Top-down or first-person shooter with bullet physics and enemies",
+  "baseConfig": {
+    "meta": {
+      "title": "My Shooter",
+      "author": "Anonymous",
+      "engine": "galacean"
+    },
+    "scene": {
+      "entities": [
+        {
+          "id": "player",
+          "name": "Player",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            { "type": "visual", "mesh": "ship", "material": "player_ship_mat" },
+            {
+              "type": "script",
+              "script": "ShooterController",
+              "props": { "speed": 6, "fireRate": 0.2, "bulletSpeed": 15 }
+            }
+          ]
+        },
+        {
+          "id": "enemy_spawner",
+          "name": "EnemySpawner",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": -20 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "EnemySpawner",
+              "props": { "spawnInterval": 2, "maxEnemies": 10 }
+            }
+          ]
+        },
+        {
+          "id": "camera",
+          "name": "Camera",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 15, "z": 5 },
+              "rotation": { "x": -70, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            }
+          ]
+        }
+      ],
+      "environment": {
+        "skybox": "space",
+        "ambientColor": "#000022"
+      }
+    },
+    "ui": {
+      "elements": [
+        {
+          "id": "health",
+          "kind": "progress",
+          "props": { "value": 100, "max": 100, "anchor": "bottom-left", "label": "HP" }
+        },
+        { "id": "score", "kind": "label", "props": { "text": "Score: 0", "anchor": "top-center" } },
+        { "id": "ammo", "kind": "label", "props": { "text": "Ammo: ∞", "anchor": "bottom-right" } }
+      ]
+    }
+  },
+  "webTemplate": "./src/web-scaffold"
+}

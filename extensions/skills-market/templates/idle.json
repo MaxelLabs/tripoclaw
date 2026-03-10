@@ -1,0 +1,79 @@
+{
+  "id": "idle",
+  "name": "Idle / Clicker",
+  "description": "Idle clicker game with auto-progression and resource accumulation",
+  "baseConfig": {
+    "meta": {
+      "title": "My Idle Game",
+      "author": "Anonymous",
+      "engine": "galacean"
+    },
+    "scene": {
+      "entities": [
+        {
+          "id": "resource_core",
+          "name": "ResourceCore",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            { "type": "visual", "mesh": "sphere", "material": "gold_mat" },
+            { "type": "script", "script": "ClickTarget", "props": { "rewardPerClick": 1 } }
+          ]
+        },
+        {
+          "id": "game_state",
+          "name": "GameState",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "IdleGameController",
+              "props": { "startGold": 0, "passiveIncome": 0, "upgradeMultiplier": 1.5 }
+            }
+          ]
+        },
+        {
+          "id": "camera",
+          "name": "Camera",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 10 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            }
+          ]
+        }
+      ],
+      "environment": {
+        "ambientColor": "#2d1b69"
+      }
+    },
+    "ui": {
+      "elements": [
+        {
+          "id": "gold",
+          "kind": "label",
+          "props": { "text": "Gold: 0", "anchor": "top-center", "fontSize": 24 }
+        },
+        {
+          "id": "income",
+          "kind": "label",
+          "props": { "text": "Per sec: 0", "anchor": "top-center", "offsetY": 30 }
+        },
+        { "id": "upgrades", "kind": "panel", "props": { "anchor": "right", "title": "Upgrades" } },
+        { "id": "click_btn", "kind": "button", "props": { "text": "Click!", "anchor": "center" } }
+      ]
+    }
+  },
+  "webTemplate": "./src/web-scaffold"
+}

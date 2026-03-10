@@ -1,0 +1,75 @@
+{
+  "id": "platformer",
+  "name": "Platformer",
+  "description": "Side-scrolling platformer with jump mechanics and ground collision",
+  "baseConfig": {
+    "meta": {
+      "title": "My Platformer",
+      "author": "Anonymous",
+      "engine": "galacean"
+    },
+    "scene": {
+      "entities": [
+        {
+          "id": "player",
+          "name": "Player",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 1, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            { "type": "visual", "mesh": "capsule", "material": "player_mat" },
+            {
+              "type": "script",
+              "script": "PlayerController",
+              "props": { "speed": 5, "jumpForce": 8 }
+            }
+          ]
+        },
+        {
+          "id": "ground",
+          "name": "Ground",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 20, "y": 0.5, "z": 1 }
+            },
+            { "type": "visual", "mesh": "box", "material": "ground_mat" }
+          ]
+        },
+        {
+          "id": "camera",
+          "name": "Camera",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 3, "z": 10 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "CameraFollow",
+              "props": { "target": "player", "smoothing": 0.1 }
+            }
+          ]
+        }
+      ],
+      "environment": {
+        "skybox": "sky_blue",
+        "ambientColor": "#87CEEB"
+      }
+    },
+    "ui": {
+      "elements": [
+        { "id": "score", "kind": "label", "props": { "text": "Score: 0", "anchor": "top-left" } },
+        { "id": "lives", "kind": "label", "props": { "text": "Lives: 3", "anchor": "top-right" } }
+      ]
+    }
+  },
+  "webTemplate": "./src/web-scaffold"
+}

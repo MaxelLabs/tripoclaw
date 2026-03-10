@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lobster Game Studio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a0a;
+        color: #fff;
+        font-family: monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      #game-canvas {
+        border: 1px solid #333;
+      }
+      #ui {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        font-size: 14px;
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ui">
+      <div id="game-title">Loading...</div>
+    </div>
+    <canvas id="game-canvas" width="800" height="600"></canvas>
+    <script>
+      // Game config injected at build time by packager
+      const GAME_CONFIG = __GAME_CONFIG__;
+
+      document.getElementById("game-title").textContent = GAME_CONFIG.meta.title;
+
+      // Galacean runtime bootstrap
+      // In production: replace this stub with @galacean/engine loader
+      console.log("[GameStudio] Config loaded:", GAME_CONFIG.meta.title);
+      console.log("[GameStudio] Entities:", GAME_CONFIG.scene.entities.length);
+      console.log("[GameStudio] Engine:", GAME_CONFIG.meta.engine);
+
+      // Stub renderer — draws entity count on canvas
+      const canvas = document.getElementById("game-canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#111";
+      ctx.fillRect(0, 0, 800, 600);
+      ctx.fillStyle = "#fff";
+      ctx.font = "24px monospace";
+      ctx.fillText(GAME_CONFIG.meta.title, 40, 60);
+      ctx.font = "14px monospace";
+      ctx.fillStyle = "#888";
+      ctx.fillText("Entities: " + GAME_CONFIG.scene.entities.length, 40, 100);
+      ctx.fillText("Engine: " + GAME_CONFIG.meta.engine, 40, 120);
+      ctx.fillText("Author: " + GAME_CONFIG.meta.author, 40, 140);
+    </script>
+  </body>
+</html>

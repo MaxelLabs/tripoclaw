@@ -1,0 +1,73 @@
+{
+  "id": "puzzle",
+  "name": "Puzzle",
+  "description": "Match-3 or tile-based puzzle with grid mechanics",
+  "baseConfig": {
+    "meta": {
+      "title": "My Puzzle",
+      "author": "Anonymous",
+      "engine": "galacean"
+    },
+    "scene": {
+      "entities": [
+        {
+          "id": "grid",
+          "name": "PuzzleGrid",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "GridController",
+              "props": { "rows": 8, "cols": 8, "tileSize": 1 }
+            }
+          ]
+        },
+        {
+          "id": "tile_pool",
+          "name": "TilePool",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 0, "y": 0, "z": 0 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            },
+            {
+              "type": "script",
+              "script": "TileSpawner",
+              "props": { "colors": ["red", "blue", "green", "yellow", "purple"] }
+            }
+          ]
+        },
+        {
+          "id": "camera",
+          "name": "Camera",
+          "components": [
+            {
+              "type": "transform",
+              "position": { "x": 4, "y": 4, "z": 15 },
+              "rotation": { "x": 0, "y": 0, "z": 0 },
+              "scale": { "x": 1, "y": 1, "z": 1 }
+            }
+          ]
+        }
+      ],
+      "environment": {
+        "ambientColor": "#1a1a2e"
+      }
+    },
+    "ui": {
+      "elements": [
+        { "id": "score", "kind": "label", "props": { "text": "Score: 0", "anchor": "top-center" } },
+        { "id": "moves", "kind": "label", "props": { "text": "Moves: 30", "anchor": "top-right" } },
+        { "id": "timer", "kind": "label", "props": { "text": "Time: 60", "anchor": "top-left" } }
+      ]
+    }
+  },
+  "webTemplate": "./src/web-scaffold"
+}
